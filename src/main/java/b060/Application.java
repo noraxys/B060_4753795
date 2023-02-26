@@ -2,13 +2,17 @@ package b060;
 
 public class Application {
     public static void main(String[] args) {
-        IRotorBladeMediator rotorBladeMediator = new RotorBladeMediator();
+        RotorBladeMediator rotorBladeMediator = new RotorBladeMediator();
 
-        SpinLeftCommand spinLeft = new SpinLeftCommand((ICommand) rotorBladeMediator);
+        rotorBladeMediator.registerRightCommand(new SpinRightCommand(rotorBladeMediator));
+        rotorBladeMediator.registerLeftCommand(new SpinLeftCommand(rotorBladeMediator));
 
-        SpinRightCommand spinRight = new SpinRightCommand((ICommand) rotorBladeMediator);
+        Button button = new Button();
+        button.setLeftCommand(rotorBladeMediator.leftCommand);
+        button.setRightCommand(rotorBladeMediator.rightCommand);
 
-        spinLeft.execute();
-        spinRight.execute();
+        button.executeLeft();
+        button.executeRight();
+
     }
 }

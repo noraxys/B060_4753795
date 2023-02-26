@@ -1,14 +1,14 @@
 package b060;
 
 public class SpinLeftCommand implements ICommand {
-    private IRotorBladeMediator rotorBladeMediator;
+    private final IRotorBladeMediator mediator;
 
-    public SpinLeftCommand(ICommand iCommand) {
-        this.rotorBladeMediator = rotorBladeMediator;
+    public SpinLeftCommand(IRotorBladeMediator mediator) {
+        this.mediator = mediator;
     }
 
     @Override
     public void execute(){
-
+        mediator.controlBlades(Controll.DECREASE);
     }
 }

@@ -1,17 +1,22 @@
 package b060;
 
 public class Button {
-    private ICommand command;
+    private ICommand leftCommand;
+    private ICommand rightCommand;
 
-    public void setCommand(ICommand command){
-        this.command = command;
+    public void setLeftCommand(ICommand command) {
+        this.leftCommand = command;
     }
 
-    public void turnLeft(){
-        command.execute();
+    public void setRightCommand(ICommand command) {
+        this.rightCommand = command;
     }
 
-    public void turnRight(){
-        command.execute();
+    public void executeLeft (){
+        leftCommand.execute();
+    }
+
+    public void executeRight(){
+        rightCommand.execute();
     }
 }

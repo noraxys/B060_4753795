@@ -1,31 +1,36 @@
 package b060;
 
-import b060.Actuator;
-import b060.IRotorBladeMediator;
+import java.util.ArrayList;
 
 public class RotorBladeMediator implements IRotorBladeMediator {
-    @Override
-    public void controlBlades() {
+    private ArrayList<Actuator> bladesList = new ArrayList<Actuator>();
+    public ICommand leftCommand;
+    public ICommand rightCommand;
 
+    public RotorBladeMediator(){
+        bladesList.add(new Actuator());
+        bladesList.add(new Actuator());
+        bladesList.add(new Actuator());
+        bladesList.add(new Actuator());
     }
 
-    @Override
-    public void registerblade1(Actuator blade){
+    public void registerRightCommand(ICommand command){
+        this.rightCommand = command;
+    };
 
-    }
-
-    @Override
-    public void registerblade2(Actuator blade){
-
-    }
+    public void registerLeftCommand(ICommand command){
+        this.leftCommand = command;
+    };
 
     @Override
-    public void registerblade3(Actuator blade){
+    public void controlBlades(Controll controll) {
+        for (int i = 0; i <= 3; i++) {
+            if(controll == Controll.DECREASE){
+            bladesList.get(i).decreaseAngle();}
 
-    }
-
-    @Override
-    public void registerblade4(Actuator blade){
-
+            if(controll == Controll.INCREASE){
+                bladesList.get(i).increaseAngle();
+            }
+        }
     }
 }

@@ -1,5 +1,5 @@
 package b060;
 
 public interface ICommand {
-    void execute();
+    public void execute();
 }
